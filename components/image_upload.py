@@ -14,15 +14,22 @@ def show_image_upload():
         
         if analyze_button:
             with st.spinner("Analyzing image..."):
-                image = Image.open(uploaded_file)
-                result, error = analyze_image(image)
-                
-                if error:
-                    st.error(f"Error: {error}")
-                else:
-                    st.session_state.result = result
-                    st.success("Analysis complete!")
+                try:
+                    # Ensure consistent format (convert all to RGB)
+                    image = Image.open(uploaded_file).convert("RGB")
+
+                    # Pass the PIL image or bytes depending on API function
+                    result, error = analyze_image(image)
+                    
+                    if error:
+                        st.error(f"Error: {error}")
+                    else:
+                        st.session_state.result = result
+                        st.success("Analysis complete!")
+
+                except Exception as e:
+                    st.error(f"Unexpected error: {e}")
         
         if analyze_button or 'result' in st.session_state:
-            image = Image.open(uploaded_file)
+            image = Image.open(uploaded_file).convert("RGB")
             st.image(image, caption="Uploaded Image", use_container_width=True)

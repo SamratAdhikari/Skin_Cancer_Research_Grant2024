@@ -1,6 +1,10 @@
 import os
 import requests
 from PIL import Image
+from dotenv import load_dotenv
+load_dotenv()
+api_url = os.getenv("API_URL")
+headers = {"Authorization": f"Bearer {os.getenv('HF_API_TOKEN')}"}
 
 def analyze_image(image):
     """
@@ -14,9 +18,6 @@ def analyze_image(image):
     """
     temp_image_path = "temp_upload.jpg"
     image.save(temp_image_path)
-    
-    api_url = os.getenv("API_URL")
-    headers = {"Authorization": f"Bearer {os.getenv('HF_API_TOKEN')}"}
     
     try:
         with open(temp_image_path, 'rb') as f:
