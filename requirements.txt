@@ -1,6 +1,12 @@
+
 streamlit==1.43.2
-dotenv==0.9.9
+python-dotenv==1.0.1
 pandas==2.2.3
+numpy==1.26.4
 pillow==11.1.0
 plotly==6.0.0
 requests==2.32.3
+
+
+tensorflow==2.19.1
+matplotlib==3.9.2

@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------
+# Training / research dependencies (notebooks 01-06).
+# Install ON TOP of requirements.txt when you want to reproduce training,
+# the diffusion ablation, or the evaluation figures. On Google Colab most of
+# these are pre-installed; see notebook 05 for the diffusers/hub note.
+# ---------------------------------------------------------------------------
+
+# Classifier training + metrics/figures
+scikit-learn==1.5.2
+matplotlib==3.9.2
+
+# Diffusion augmentation (PyTorch stack, decoupled from TensorFlow).
+# NOTE: install diffusers WITHOUT separately upgrading huggingface_hub — let
+# diffusers pull a compatible hub. A mismatched hub version breaks its imports
+# (see src/diffusion.py, which avoids DDPMPipeline for exactly this reason).
+torch>=2.2
+diffusers>=0.27,<0.41
+accelerate>=0.30
+
+# Notebook execution
+jupyter
+nbformat>=5.9
